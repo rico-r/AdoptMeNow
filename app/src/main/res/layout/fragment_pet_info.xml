@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="info"
+            type="com.kelompok5.adoptmenow.petinfo.PetInfo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?actionBarSize"
+        android:padding="10dp"
+        tools:context=".adoptform.AdoptionFormFragment" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@{info.title}"
+            tools:text="Kucing Persia"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/share_button"
+            app:layout_constraintBottom_toBottomOf="@id/share_button" />
+
+        <Button
+            android:id="@+id/share_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/share"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/scroll_view"
+            app:layout_constraintTop_toBottomOf="@id/share_button"
+            app:layout_constraintBottom_toTopOf="@id/save_button">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:id="@+id/first_image"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:id="@+id/image_container"
+                    app:layout_constraintTop_toBottomOf="@id/first_image"
+                    tools:listitem="@layout/list_item_info_image"
+                    tools:itemCount="5" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/description"
+                    android:text="@{info.description}"
+                    app:layout_constraintTop_toBottomOf="@id/image_container"
+                    tools:text="@tools:sample/lorem/random" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/phone_icon"
+                    android:src="@android:drawable/sym_action_chat"
+                    app:layout_constraintTop_toBottomOf="@id/description"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{info.phone}"
+                    app:layout_constraintTop_toTopOf="@id/phone_icon"
+                    app:layout_constraintBottom_toBottomOf="@id/phone_icon"
+                    app:layout_constraintLeft_toRightOf="@id/phone_icon"
+                    tools:text="@tools:sample/us_phones" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/location_icon"
+                    android:src="@android:drawable/ic_menu_mapmode"
+                    app:layout_constraintTop_toBottomOf="@id/phone_icon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{info.address}"
+                    app:layout_constraintTop_toTopOf="@id/location_icon"
+                    app:layout_constraintBottom_toBottomOf="@id/location_icon"
+                    app:layout_constraintLeft_toRightOf="@id/location_icon"
+                    tools:text="@tools:sample/cities" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/save_button"
+            android:text="@string/save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/adopt_button" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/adopt_button"
+            android:text="@string/adopt"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/save_button" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

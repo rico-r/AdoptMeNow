@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">AdoptMe Now</string>
+    <string name="home">Beranda</string>
+    <string name="saved">Disimpan</string>
+    <string name="history">Riwayat</string>
+    <string name="account">Akun</string>
+    <string name="search_hint">Cari...</string>
+    <string name="search">Cari</string>
+    <string name="recommendation">REKOMENDASI</string>
+    <string name="share">Bagikan</string>
+    <string name="save">Simpan</string>
+    <string name="adopt">Adopsi</string>
+    <string name="adopter_identity">Identitas Calon Adopter</string>
+    <string name="full_name">Nama lengkap</string>
+    <string name="email">Email</string>
+    <string name="phone_number">Nomor Handphone</string>
+    <string name="profession">Profesi</string>
+    <string name="address">Alamat</string>
+    <string name="adopted_pet">Hewan yang ingin diadopsi</string>
+    <string name="species">Jenis Hewan</string>
+    <string name="pet_name">Nama hewan</string>
+    <string name="gender">Jenis kelamin</string>
+    <string name="adopt_reason">Alasan adopsi</string>
+    <string name="send">Kirim</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

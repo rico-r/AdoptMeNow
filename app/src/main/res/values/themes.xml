@@ -1,9 +1,24 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Action bar theme -->
+    <style name="ThemeActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="android:background">@null</item>
+        <!-- Support library compatibility -->
+        <item name="background">@null</item>
+    </style>
+
+
     <!-- Base application theme. -->
-    <style name="Base.Theme.AdoptMeNow" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.AdoptMeNow" parent="Theme.Material3.DayNight">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.AdoptMeNow" parent="Base.Theme.AdoptMeNow" />
+    <style name="Theme.AdoptMeNow" parent="Base.Theme.AdoptMeNow">
+        <!-- Make action bar transparent -->
+        <item name="android:actionBarStyle">@style/ThemeActionBar</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/ThemeActionBar</item>
+        <item name="windowActionBarOverlay">true</item>
+    </style>
 </resources>

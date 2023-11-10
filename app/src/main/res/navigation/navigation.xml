@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.kelompok5.adoptmenow.MainFragment"
+        tools:label="MainFragment"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_adoptionInfoFragment"
+            app:destination="@id/adoptionInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adoptionInfoFragment"
+        android:name="com.kelompok5.adoptmenow.petinfo.PetInfoFragment"
+        tools:label="PetInfoFragment"
+        tools:layout="@layout/fragment_pet_info" >
+        <action
+            android:id="@+id/action_adoptionInfoFragment_to_adoptionFormFragment"
+            app:destination="@id/adoptionFormFragment" />
+        <argument
+            android:name="petInfo"
+            app:argType="com.kelompok5.adoptmenow.petinfo.PetInfo" />
+    </fragment>
+    <fragment
+        android:id="@+id/adoptionFormFragment"
+        android:name="com.kelompok5.adoptmenow.adoptform.AdoptionFormFragment"
+        tools:label="AdoptionFormFragment"
+        tools:layout="@layout/fragment_adoption_form" />
+</navigation>

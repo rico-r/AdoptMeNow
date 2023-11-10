@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?actionBarSize"
+        tools:con=".AdoptionFormFragment" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/adopter_identity"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:id="@+id/title"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/full_name"
+                android:id="@+id/full_name_label"
+                app:layout_constraintTop_toBottomOf="@id/title" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/full_name"
+                app:layout_constraintTop_toBottomOf="@id/full_name_label" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/email"
+                android:id="@+id/email_label"
+                app:layout_constraintTop_toBottomOf="@id/full_name" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/email"
+                app:layout_constraintTop_toBottomOf="@id/email_label" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/phone_number"
+                android:id="@+id/phone_number_label"
+                app:layout_constraintTop_toBottomOf="@id/email" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/phone_number"
+                app:layout_constraintTop_toBottomOf="@id/phone_number_label" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profession"
+                android:id="@+id/profession_label"
+                app:layout_constraintTop_toBottomOf="@id/phone_number" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/profession"
+                app:layout_constraintTop_toBottomOf="@id/profession_label" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/address"
+                android:id="@+id/address_label"
+                app:layout_constraintTop_toBottomOf="@id/profession" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/address"
+                app:layout_constraintTop_toBottomOf="@id/address_label" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/adopted_pet"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:id="@+id/title2"
+                app:layout_constraintTop_toBottomOf="@id/address" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/species"
+                android:id="@+id/species_label"
+                app:layout_constraintTop_toBottomOf="@id/title2" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/species"
+                app:layout_constraintTop_toBottomOf="@id/species_label" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pet_name"
+                android:id="@+id/pet_name_label"
+                app:layout_constraintTop_toBottomOf="@id/species" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/pet_name"
+                app:layout_constraintTop_toBottomOf="@id/pet_name_label" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/gender"
+                android:id="@+id/gender_label"
+                app:layout_constraintTop_toBottomOf="@id/pet_name" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/gender"
+                app:layout_constraintTop_toBottomOf="@id/gender_label" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/adopt_reason"
+                android:id="@+id/adopt_reason_label"
+                app:layout_constraintTop_toBottomOf="@id/gender" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/adopt_reason"
+                app:layout_constraintTop_toBottomOf="@id/adopt_reason_label" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/send_button"
+                android:text="@string/send"
+                app:layout_constraintTop_toBottomOf="@id/adopt_reason"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>
