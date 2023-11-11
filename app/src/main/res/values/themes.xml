@@ -7,8 +7,11 @@
     </style>
 
     <!-- Base application theme. -->
-    <style name="Base.Theme.AdoptMeNow" parent="Theme.Material3.DayNight">
+    <style name="Base.Theme.AdoptMeNow" parent="Theme.Material3.Light">
         <item name="colorPrimary">#2589FF</item>
+    </style>
+
+    <style name="Theme.AdoptMeNow" parent="Base.Theme.AdoptMeNow">
         <item name="tabStyle">@style/Widget.App.MainTabLayout</item>
 
         <!-- Make action bar transparent -->
@@ -17,9 +20,6 @@
         <!-- Support library compatibility -->
         <item name="actionBarStyle">@style/ThemeActionBar</item>
         <item name="windowActionBarOverlay">true</item>
-    </style>
-
-    <style name="Theme.AdoptMeNow" parent="Base.Theme.AdoptMeNow">
     </style>
     
     <style name="Widget.App.MainTabLayout" parent="Widget.Material3.TabLayout">

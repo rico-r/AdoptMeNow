@@ -26,6 +26,9 @@ class MainFragment : Fragment() {
         val binding: FragmentMainBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_main, container, false)
 
+        // Disable swiping
+        binding.mainPager.isUserInputEnabled = false
+
         binding.mainPager.adapter = object: FragmentStateAdapter(this) {
             val homeFragment = HomeFragment()
             val savedFragment = SavedFragment()
