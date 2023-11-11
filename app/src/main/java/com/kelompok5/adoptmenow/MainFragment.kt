@@ -44,6 +44,7 @@ class MainFragment : Fragment() {
                     else -> accountFragment
                 }
             }
+
         }
 
         TabLayoutMediator(binding.mainTabs, binding.mainPager) {tabs, position ->
@@ -53,6 +54,12 @@ class MainFragment : Fragment() {
                 2 -> resources.getString(R.string.history)
                 else -> resources.getString(R.string.account)
             }
+            tabs.setIcon(when(position) {
+                0 -> R.drawable.home
+                1 -> R.drawable.bookmark
+                2 -> R.drawable.history
+                else -> R.drawable.user
+            })
         }.attach()
 
         return binding.root

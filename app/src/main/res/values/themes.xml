@@ -6,19 +6,31 @@
         <item name="background">@null</item>
     </style>
 
-
     <!-- Base application theme. -->
     <style name="Base.Theme.AdoptMeNow" parent="Theme.Material3.DayNight">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-    </style>
+        <item name="colorPrimary">#2589FF</item>
+        <item name="tabStyle">@style/Widget.App.MainTabLayout</item>
 
-    <style name="Theme.AdoptMeNow" parent="Base.Theme.AdoptMeNow">
         <!-- Make action bar transparent -->
         <item name="android:actionBarStyle">@style/ThemeActionBar</item>
         <item name="android:windowActionBarOverlay">true</item>
         <!-- Support library compatibility -->
         <item name="actionBarStyle">@style/ThemeActionBar</item>
         <item name="windowActionBarOverlay">true</item>
+    </style>
+
+    <style name="Theme.AdoptMeNow" parent="Base.Theme.AdoptMeNow">
+    </style>
+    
+    <style name="Widget.App.MainTabLayout" parent="Widget.Material3.TabLayout">
+        <item name="tabIndicatorHeight">0dp</item>
+        <item name="tabIconTintMode">@null</item>
+        <item name="tabIconTint">@null</item>
+        <item name="tabTextColor">?attr/colorPrimary</item>
+        <item name="tabSelectedTextColor">#3988FF</item>
+    </style>
+    
+    <style name="CarouselImage">
+        <item name="cornerSize">6dp</item>
     </style>
 </resources>

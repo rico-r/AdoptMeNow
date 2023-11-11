@@ -22,7 +22,7 @@ class HomeFragment() : Fragment() {
         val binding: TabContentHomeBinding = DataBindingUtil.inflate(
             inflater, R.layout.tab_content_home, container, false)
 
-        binding.recyclerView.adapter = HomeItemAdapter(RecommendationItemClickListener {
+        binding.recyclerView.adapter = HomeItemAdapter(this, RecommendationItemClickListener {
             this.findNavController().navigate(
                 MainFragmentDirections
                     .actionMainFragmentToAdoptionInfoFragment(it))

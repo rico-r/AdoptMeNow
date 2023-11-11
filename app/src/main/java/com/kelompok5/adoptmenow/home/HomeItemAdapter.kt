@@ -1,19 +1,16 @@
 package com.kelompok5.adoptmenow.home
 
-import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.kelompok5.adoptmenow.R
-import com.kelompok5.adoptmenow.databinding.HomeContentRecommendationItemBinding
 import com.kelompok5.adoptmenow.petinfo.PetInfo
 
 private const val ITEM_VIEW_TYPE_HEADER = 0
 private const val ITEM_VIEW_TYPE_ITEM = 1
 
 class HomeItemAdapter(
+    private  val homeFragment: HomeFragment,
     private val clickListener: RecommendationItemClickListener
 ) : ListAdapter<DataItem, RecyclerView.ViewHolder>(HomeItemDiffCallback()) {
 
@@ -31,7 +28,7 @@ class HomeItemAdapter(
                         "This is recommendation no.$position",
                         "+62857-1234-000$position",
                         "Address $position",
-                        listOf("")
+                        List((1..9).random()) { "images/sample/cat3/cat-3-${(1..11).random()}.jpg" }
                     )
                 )
             }
@@ -41,7 +38,7 @@ class HomeItemAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            ITEM_VIEW_TYPE_HEADER -> HeaderViewHolder.from(parent)
+            ITEM_VIEW_TYPE_HEADER -> HeaderViewHolder.from(parent, homeFragment)
             ITEM_VIEW_TYPE_ITEM -> RecommendationItemViewHolder.from(parent)
             else -> throw ClassCastException("Unknown viewType $viewType")
         }
@@ -51,7 +48,10 @@ class HomeItemAdapter(
         when (holder) {
             is RecommendationItemViewHolder -> {
                 val item = getItem(position) as DataItem.RecommendationItem
-                holder.bind(item.petInfo, clickListener)
+                holder.bind(item.petInfo, clickListener, position)
+            }
+            is HeaderViewHolder -> {
+                holder.bind()
             }
         }
     }
@@ -60,32 +60,6 @@ class HomeItemAdapter(
         return when(position) {
             0 -> ITEM_VIEW_TYPE_HEADER
             else -> ITEM_VIEW_TYPE_ITEM
-        }
-    }
-
-    class HeaderViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        companion object {
-            fun from(parent: ViewGroup): HeaderViewHolder {
-                val layoutInflater = LayoutInflater.from(parent.context)
-                val view = layoutInflater.inflate(R.layout.home_content_header, parent, false)
-                return HeaderViewHolder(view)
-            }
-        }
-    }
-
-    class RecommendationItemViewHolder private constructor(val binding: HomeContentRecommendationItemBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(item: PetInfo, clickListener: RecommendationItemClickListener) {
-            binding.item = item
-            binding.clickListener = clickListener
-            binding.executePendingBindings()
-        }
-
-        companion object {
-            fun from(parent: ViewGroup): RecommendationItemViewHolder {
-                val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = HomeContentRecommendationItemBinding.inflate(layoutInflater, parent, false)
-                return RecommendationItemViewHolder(binding)
-            }
         }
     }
 }
