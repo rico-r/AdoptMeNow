@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/adoptionInfoFragment"
         android:name="com.kelompok5.adoptmenow.petinfo.PetInfoFragment"
-        tools:label="PetInfoFragment"
+        android:label="@string/pet_info"
         tools:layout="@layout/fragment_pet_info" >
         <action
             android:id="@+id/action_adoptionInfoFragment_to_adoptionFormFragment"

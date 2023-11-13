@@ -2,6 +2,9 @@ package com.kelompok5.adoptmenow.petinfo
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -9,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kelompok5.adoptmenow.R
+import com.kelompok5.adoptmenow.bindImage
 import com.kelompok5.adoptmenow.databinding.FragmentPetInfoBinding
 
 class PetInfoFragment : Fragment() {
@@ -29,7 +33,7 @@ class PetInfoFragment : Fragment() {
         }
 
         val images = arguments.petInfo.images
-        binding.firstImage.setImageResource(android.R.drawable.ic_menu_camera)
+        bindImage(binding.firstImage, images[0])
 
         if(images.size == 1) {
             binding.imageContainer.visibility = View.GONE
@@ -38,7 +42,21 @@ class PetInfoFragment : Fragment() {
             binding.imageContainer.layoutManager =  layoutManager
             binding.imageContainer.adapter = ImageListAdapter(images.drop(1))
         }
+
+        // Set status text
+        binding.status.text = resources.getText(if(arguments.petInfo.available) R.string.status_available else R.string.status_not_available)
+
+        setHasOptionsMenu(true)
         return binding.root
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_share, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // TODO: share feature here
+        return super.onOptionsItemSelected(item)
+    }
 }

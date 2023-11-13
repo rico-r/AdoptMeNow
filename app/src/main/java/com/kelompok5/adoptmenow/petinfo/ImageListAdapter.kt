@@ -18,7 +18,7 @@ class ImageListAdapter(
     class ImageViewHolder(private var binding: ListItemInfoImageBinding):
         RecyclerView.ViewHolder(binding.root) {
         fun bind(url: String) {
-            binding.imageSrc = "/test.jpg"
+            binding.imageSrc = url
             binding.executePendingBindings()
         }
     }

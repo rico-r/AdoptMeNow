@@ -4,6 +4,12 @@
         <item name="android:background">@null</item>
         <!-- Support library compatibility -->
         <item name="background">@null</item>
+        <item name="titleTextStyle">@style/App.ActionBar.Text</item>
+    </style>
+
+    <style name="App.ActionBar.Text" parent="@style/TextAppearance.Material3.ActionBar.Title">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <!-- Base application theme. -->
@@ -13,6 +19,8 @@
 
     <style name="Theme.AdoptMeNow" parent="Base.Theme.AdoptMeNow">
         <item name="tabStyle">@style/Widget.App.MainTabLayout</item>
+        <item name="textFillColor">@color/black</item>
+        <item name="colorOnSurface">#FFF</item>
 
         <!-- Make action bar transparent -->
         <item name="android:actionBarStyle">@style/ThemeActionBar</item>
@@ -32,5 +40,15 @@
     
     <style name="CarouselImage">
         <item name="cornerSize">6dp</item>
+    </style>
+
+    <style name="primaryButton">
+        <item name="android:background">@drawable/primary_button</item>
+        <item name="android:textColor">?colorOnSurface</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
     </style>
 </resources>

@@ -24,7 +24,7 @@ class HomeItemAdapter(
                     PetInfo(
                         "",
                         "Recommendation $position",
-                        PetInfo.Status.Available,
+                        true,
                         "This is recommendation no.$position",
                         "+62857-1234-000$position",
                         "Address $position",
