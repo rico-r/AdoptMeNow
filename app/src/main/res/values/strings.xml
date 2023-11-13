@@ -27,4 +27,5 @@
     <string name="status_not_available"><font color="red">Sudah Diadopsi</font></string>
     <string name="description_label">Deskripsi : </string>
     <string name="pet_info">Informasi Hewan</string>
+    <string name="adoption_form">Formulir Adopsi</string>
 </resources>
