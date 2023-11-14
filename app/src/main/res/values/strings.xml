@@ -28,4 +28,5 @@
     <string name="description_label">Deskripsi : </string>
     <string name="pet_info">Informasi Hewan</string>
     <string name="adoption_form">Formulir Adopsi</string>
+    <string name="view_detail">Lihat Detail</string>
 </resources>

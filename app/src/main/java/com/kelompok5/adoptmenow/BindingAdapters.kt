@@ -15,8 +15,8 @@ fun bindImage(imgView: ImageView, url: String?) {
             .load(ref)
             .apply(
                 RequestOptions()
-                    .placeholder(android.R.drawable.ic_menu_camera)
-                    .error(R.drawable.pets))
+                    .placeholder(R.drawable.pets_long)
+                    .error(R.drawable.pets_long))
             .into(imgView)
     }
 }

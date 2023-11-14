@@ -44,7 +44,7 @@ class PetInfoFragment : Fragment() {
         }
 
         // Set status text
-        binding.status.text = resources.getText(if(arguments.petInfo.available) R.string.status_available else R.string.status_not_available)
+        binding.status.text = arguments.petInfo.getStatus(resources)
 
         setHasOptionsMenu(true)
         return binding.root

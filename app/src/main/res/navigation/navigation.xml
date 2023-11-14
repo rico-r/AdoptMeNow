@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_mainFragment_to_adoptionInfoFragment"
             app:destination="@id/adoptionInfoFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_searchResultFragment"
+            app:destination="@id/searchResultFragment" />
     </fragment>
     <fragment
         android:id="@+id/adoptionInfoFragment"
@@ -31,4 +34,16 @@
         android:name="com.kelompok5.adoptmenow.adoptform.AdoptionFormFragment"
         android:label="@string/adoption_form"
         tools:layout="@layout/fragment_adoption_form" />
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="com.kelompok5.adoptmenow.search.SearchResultFragment"
+        android:label=""
+        tools:layout="@layout/fragment_search_result">
+        <action
+            android:id="@+id/action_searchResultFragment_to_adoptionInfoFragment"
+            app:destination="@id/adoptionInfoFragment" />
+        <argument
+            android:name="query"
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -37,6 +37,12 @@ class HomeFragment() : Fragment() {
         }
         binding.recyclerView.layoutManager = manager
 
+        binding.searchButton.setOnClickListener {
+            this.findNavController().navigate(
+                MainFragmentDirections
+                    .actionMainFragmentToSearchResultFragment(binding.searchQuery.text.toString()))
+        }
+
         return binding.root
     }
 
