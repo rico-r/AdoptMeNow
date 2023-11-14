@@ -29,4 +29,6 @@
     <string name="pet_info">Informasi Hewan</string>
     <string name="adoption_form">Formulir Adopsi</string>
     <string name="view_detail">Lihat Detail</string>
+    <string name="post">Post</string>
+    <string name="form">form</string>
 </resources>
