@@ -63,13 +63,14 @@
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:layout_marginHorizontal="6dp"
                 android:textSize="12sp"
                 android:textColor="@color/black"
                 android:text="@{item.address}"
                 app:layout_constraintStart_toEndOf="@id/location_icon"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/location_icon"
                 app:layout_constraintBottom_toBottomOf="@id/location_icon"
                 tools:text="Jl.gemarang, Caruban" />

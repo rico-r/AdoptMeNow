@@ -4,6 +4,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.getValue
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.kelompok5.adoptmenow.petinfo.PetInfo
 
 private const val ITEM_VIEW_TYPE_HEADER = 0
@@ -14,26 +17,26 @@ class HomeItemAdapter(
     private val clickListener: RecommendationItemClickListener
 ) : ListAdapter<DataItem, RecyclerView.ViewHolder>(HomeItemDiffCallback()) {
 
-    private var items: MutableList<DataItem>
+    private val header = DataItem.Header()
 
     init {
-        items = MutableList<DataItem>(7) { position ->
-            when(position) {
-                0-> DataItem.Header()
-                else-> DataItem.RecommendationItem(
-                    PetInfo(
-                        "",
-                        "Recommendation $position",
-                        true,
-                        "This is recommendation no.$position",
-                        "+62857-1234-000$position",
-                        "Address $position",
-                        List((1..9).random()) { "images/sample/cat3/cat-3-${(1..11).random()}.jpg" }
-                    )
-                )
+        Firebase.database.getReference("posts")
+            .orderByKey().limitToLast(6).get()
+            .addOnSuccessListener {
+                val items = it.getValue<List<PetInfo>>()
+                updateList(items!!)
+            }.addOnSuccessListener {
+                // TODO: Do something when failed to get the list
             }
-        }
-        submitList(items)
+    }
+
+    private fun updateList(items: List<PetInfo>) {
+        submitList(List(items.size + 1) {
+            when (it) {
+                0 -> header
+                else -> DataItem.RecommendationItem(items[it - 1])
+            }
+        })
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
