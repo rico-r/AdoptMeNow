@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import com.kelompok5.adoptmenow.databinding.FragmentSearchResultBinding
 class SearchResultFragment : Fragment() {
 
     lateinit var binding: FragmentSearchResultBinding
+    lateinit var adapter: SearchItemAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,11 +29,12 @@ class SearchResultFragment : Fragment() {
 
         binding.searchQuery.setText(arguments.query)
 
-        binding.recyclerView.adapter = SearchItemAdapter(SearchItemClickListener {
+        adapter = SearchItemAdapter(SearchItemClickListener {
             this.findNavController().navigate(
                 SearchResultFragmentDirections
                     .actionSearchResultFragmentToAdoptionInfoFragment(it))
         })
+        binding.recyclerView.adapter = adapter
 
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
 
@@ -40,7 +43,22 @@ class SearchResultFragment : Fragment() {
                 .navigateUp()
         }
 
+        binding.searchButton.setOnClickListener {
+            searchPost()
+        }
+        binding.searchQuery.setOnEditorActionListener { view, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                searchPost()
+            }
+            true
+        }
+
+        searchPost()
         return binding.root
+    }
+
+    fun searchPost() {
+        adapter.changeQuery(binding.searchQuery.text.toString())
     }
 
     override fun onResume() {

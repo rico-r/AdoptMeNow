@@ -5,6 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.getValue
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.kelompok5.adoptmenow.bindImage
 import com.kelompok5.adoptmenow.databinding.ListItemSearchResultBinding
 import com.kelompok5.adoptmenow.petinfo.PetInfo
@@ -13,19 +16,17 @@ class SearchItemAdapter(
     private val clickListener: SearchItemClickListener
 ) : ListAdapter<PetInfo, RecyclerView.ViewHolder>(SearchItemDiffCallback()) {
 
-    init {
-        val items = MutableList(7) {position ->
-            PetInfo(
-                "",
-                "Search result $position",
-                true,
-                "This is Search Result no.$position",
-                "+62857-1234-100$position",
-                "Address $position",
-                List((1..9).random()) { "images/sample/cat3/cat-3-${(1..11).random()}.jpg" }
-            )
-        }
-        submitList(items)
+    fun changeQuery(query: String) {
+        Firebase.database.getReference("posts").orderByChild("title")
+            .startAt(query).endAt(query + "\uf8ff")
+            .get().addOnSuccessListener {
+                val items = it.getValue<HashMap<String, PetInfo>>()
+                if(items!=null) submitList(items.values.toList())
+                else submitList(listOf())
+            }.addOnFailureListener {
+                // TODO: Do something when failed to get the list
+                it.printStackTrace()
+            }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

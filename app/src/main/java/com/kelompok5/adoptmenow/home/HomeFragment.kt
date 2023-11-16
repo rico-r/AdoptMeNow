@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -14,12 +15,14 @@ import com.kelompok5.adoptmenow.databinding.TabContentHomeBinding
 
 class HomeFragment() : Fragment() {
 
+    lateinit var binding: TabContentHomeBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        val binding: TabContentHomeBinding = DataBindingUtil.inflate(
+        binding = DataBindingUtil.inflate(
             inflater, R.layout.tab_content_home, container, false)
 
         binding.recyclerView.adapter = HomeItemAdapter(this, RecommendationItemClickListener {
@@ -38,12 +41,22 @@ class HomeFragment() : Fragment() {
         binding.recyclerView.layoutManager = manager
 
         binding.searchButton.setOnClickListener {
-            this.findNavController().navigate(
-                MainFragmentDirections
-                    .actionMainFragmentToSearchResultFragment(binding.searchQuery.text.toString()))
+            searchPost()
+        }
+        binding.searchQuery.setOnEditorActionListener { view, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                searchPost()
+            }
+            true
         }
 
         return binding.root
+    }
+
+    fun searchPost() {
+        this.findNavController().navigate(
+            MainFragmentDirections
+                .actionMainFragmentToSearchResultFragment(binding.searchQuery.text.toString()))
     }
 
 }

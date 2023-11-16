@@ -23,9 +23,9 @@ class HomeItemAdapter(
         Firebase.database.getReference("posts")
             .orderByKey().limitToLast(6).get()
             .addOnSuccessListener {
-                val items = it.getValue<List<PetInfo>>()
-                updateList(items!!)
-            }.addOnSuccessListener {
+                val items = it.getValue<HashMap<String, PetInfo>>()
+                if(items != null) updateList(items.values.toList())
+            }.addOnFailureListener {
                 // TODO: Do something when failed to get the list
             }
     }
