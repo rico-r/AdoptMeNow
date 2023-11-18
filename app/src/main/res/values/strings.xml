@@ -36,4 +36,14 @@
     <string name="register">Daftar</string>
     <string name="forgot_password">Lupa Password?</string>
     <string name="auth_failed">Email atau Password yang Anda masukkan salah</string>
+    <string name="repeat_password">Ulangi Password</string>
+    <string name="password_not_match">Password dan konfirmasi password tidak sama</string>
+    <string name="register_success">Pendaftaran berhasil!</string>
+    <string name="email_registered">Email ini sudah terdaftar</string>
+    <string name="profile">Profil</string>
+    <string name="logout">Logout</string>
+    <string name="edit_profile">Edit Profil</string>
+    <string name="no_phone">No. Hp</string>
+    <string name="logout_success">Berhasil keluar</string>
+    <string name="cant_empty">%s tidak boleh kosong</string>
 </resources>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -46,6 +47,8 @@ class LoginFragment : Fragment() {
     }
 
     private fun attemptLogin() {
+        if(!checkEmpty(binding.emailField, R.string.email)) return
+        if(!checkEmpty(binding.passwordField, R.string.password)) return
         val email = binding.emailField.text.toString()
         val password = binding.passwordField.text.toString()
         auth.signInWithEmailAndPassword(email, password)
@@ -61,6 +64,18 @@ class LoginFragment : Fragment() {
                     ).show()
                 }
             }
+    }
+
+    private fun checkEmpty(field: EditText, name: Int): Boolean {
+        if(field.text.isEmpty()) {
+            Toast.makeText(
+                requireContext(),
+                resources.getString(R.string.cant_empty, resources.getString(name)),
+                Toast.LENGTH_SHORT).show()
+            field.requestFocus()
+            return false
+        }
+        return true
     }
 
     override fun onResume() {
