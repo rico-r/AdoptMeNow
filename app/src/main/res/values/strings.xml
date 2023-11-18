@@ -31,4 +31,9 @@
     <string name="view_detail">Lihat Detail</string>
     <string name="post">Post</string>
     <string name="form">form</string>
+    <string name="login">Masuk</string>
+    <string name="password">Password</string>
+    <string name="register">Daftar</string>
+    <string name="forgot_password">Lupa Password?</string>
+    <string name="auth_failed">Email atau Password yang Anda masukkan salah</string>
 </resources>
