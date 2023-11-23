@@ -20,3 +20,6 @@ fun bindImage(imgView: ImageView, url: String?) {
             .into(imgView)
     }
 }
+
+fun String.toCamelCase(): String =
+    this.split(" ").joinToString(" ") { it.lowercase().capitalize() }

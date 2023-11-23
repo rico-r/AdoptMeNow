@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.main_nav_host_fragment)
         NavigationUI.setupActionBarWithNavController(this, navController)
 
-        if (Firebase.auth.currentUser != null) {
+        if(savedInstanceState == null && Firebase.auth.currentUser != null) {
             navController.navigate(
                 LoginFragmentDirections
                     .actionLoginFragmentToMainFragment())

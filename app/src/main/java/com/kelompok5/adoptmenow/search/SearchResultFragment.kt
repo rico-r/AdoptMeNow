@@ -8,6 +8,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kelompok5.adoptmenow.R
@@ -25,17 +26,24 @@ class SearchResultFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_search_result, container, false)
-        val arguments = SearchResultFragmentArgs.fromBundle(requireArguments())
 
-        binding.searchQuery.setText(arguments.query)
-
-        adapter = SearchItemAdapter(SearchItemClickListener {
+        adapter = SearchItemAdapter {
             this.findNavController().navigate(
                 SearchResultFragmentDirections
                     .actionSearchResultFragmentToAdoptionInfoFragment(it))
-        })
-        binding.recyclerView.adapter = adapter
+        }
 
+        val args = SearchResultFragmentArgs.fromBundle(requireArguments())
+        val viewModelFactory = SearchResultViewModelFactory(args.query)
+        val viewModel =
+            ViewModelProvider(this, viewModelFactory)[SearchResultViewModel::class.java]
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
+        viewModel.query.observe(viewLifecycleOwner, viewModel::onSearch)
+        viewModel.searchResult.observe(viewLifecycleOwner, adapter::submitList)
+
+        binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
 
         binding.navigateUp.setOnClickListener {
@@ -43,22 +51,19 @@ class SearchResultFragment : Fragment() {
                 .navigateUp()
         }
 
-        binding.searchButton.setOnClickListener {
-            searchPost()
-        }
+        binding.searchButton.setOnClickListener { onSearch(viewModel) }
         binding.searchQuery.setOnEditorActionListener { view, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                searchPost()
+                onSearch(viewModel)
             }
             true
         }
 
-        searchPost()
         return binding.root
     }
 
-    fun searchPost() {
-        adapter.changeQuery(binding.searchQuery.text.toString())
+    private fun onSearch(viewModel: SearchResultViewModel) {
+        viewModel.query.value = binding.searchQuery.text.toString()
     }
 
     override fun onResume() {

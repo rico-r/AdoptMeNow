@@ -5,29 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.getValue
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import com.kelompok5.adoptmenow.bindImage
 import com.kelompok5.adoptmenow.databinding.ListItemSearchResultBinding
 import com.kelompok5.adoptmenow.petinfo.PetInfo
 
 class SearchItemAdapter(
-    private val clickListener: SearchItemClickListener
+    private val clickListener: (item: PetInfo) -> Unit
 ) : ListAdapter<PetInfo, RecyclerView.ViewHolder>(SearchItemDiffCallback()) {
-
-    fun changeQuery(query: String) {
-        Firebase.database.getReference("posts").orderByChild("title")
-            .startAt(query).endAt(query + "\uf8ff")
-            .get().addOnSuccessListener {
-                val items = it.getValue<HashMap<String, PetInfo>>()
-                if(items!=null) submitList(items.values.toList())
-                else submitList(listOf())
-            }.addOnFailureListener {
-                // TODO: Do something when failed to get the list
-                it.printStackTrace()
-            }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return SearchItemViewHolder.from(parent)
@@ -43,13 +27,11 @@ class SearchItemAdapter(
     }
 
     class SearchItemViewHolder private constructor(val binding: ListItemSearchResultBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(item: PetInfo, clickListener: SearchItemClickListener, position: Int) {
+        fun bind(item: PetInfo, clickListener: (item: PetInfo) -> Unit, position: Int) {
             bindImage(binding.image, item.images[0])
             binding.title.text = item.title
             binding.status.text = item.getStatus(binding.root.resources)
-            binding.viewButton.setOnClickListener {
-                clickListener.onClick(item)
-            }
+            binding.viewButton.setOnClickListener { clickListener(item) }
             binding.executePendingBindings()
         }
 
@@ -61,10 +43,6 @@ class SearchItemAdapter(
             }
         }
     }
-}
-
-class SearchItemClickListener(val clickListener: (item: PetInfo) -> Unit) {
-    fun onClick(item: PetInfo) = clickListener(item)
 }
 
 class SearchItemDiffCallback : DiffUtil.ItemCallback<PetInfo>() {
