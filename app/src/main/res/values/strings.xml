@@ -66,4 +66,6 @@
     <string name="creating_post">Menyimpan post…</string>
     <string name="post_created">Post berhasil disimpan!</string>
     <string name="edit">Edit</string>
+    <string name="notification">Notifikasi</string>
+    <string name="today">Hari ini</string>
 </resources>

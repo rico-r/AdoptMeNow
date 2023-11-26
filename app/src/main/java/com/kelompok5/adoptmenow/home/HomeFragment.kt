@@ -55,6 +55,11 @@ class HomeFragment() : Fragment() {
                 .navigate(MainFragmentDirections.actionMainFragmentToCreatePostFragment())
         }
 
+        binding.notificationButton.setOnClickListener {
+            this.findNavController().navigate(
+                MainFragmentDirections.actionMainFragmentToNotificationFragment())
+        }
+
         return binding.root
     }
 

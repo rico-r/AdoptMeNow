@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_mainFragment_to_createPostFragment"
             app:destination="@id/createPostFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
     </fragment>
     <fragment
         android:id="@+id/adoptionInfoFragment"
@@ -95,4 +98,9 @@
         android:name="com.kelompok5.adoptmenow.post.CreatePostFragment"
         android:label="@string/create_post_title"
         tools:layout="@layout/fragment_create_post" />
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.kelompok5.adoptmenow.notification.NotificationFragment"
+        android:label="@string/notification"
+        tools:layout="@layout/fragment_notification" />
 </navigation>

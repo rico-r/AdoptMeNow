@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import com.kelompok5.adoptmenow.MainFragmentDirections
 import com.kelompok5.adoptmenow.R
 import com.kelompok5.adoptmenow.databinding.TabContentHistoryBinding
 
@@ -44,6 +46,11 @@ class HistoryFragment() : Fragment() {
                 else -> resources.getString(R.string.post)
             }
         }.attach()
+
+        binding.notificationButton.setOnClickListener {
+            this.findNavController().navigate(
+                MainFragmentDirections.actionMainFragmentToNotificationFragment())
+        }
 
         return binding.root
     }
