@@ -1,5 +1,7 @@
 package com.kelompok5.adoptmenow.account
 
+import java.io.Serializable
+
 
 data class UserInfo(
     var name: String = "",
@@ -7,4 +9,4 @@ data class UserInfo(
     var email: String = "",
     var address: String = "",
     var phone: String = "",
-)
+) : Serializable

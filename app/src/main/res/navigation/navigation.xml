@@ -21,6 +21,9 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/mainFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_mainFragment_to_editAccountFragment"
+            app:destination="@id/editAccountFragment" />
     </fragment>
     <fragment
         android:id="@+id/adoptionInfoFragment"
@@ -70,4 +73,9 @@
         android:name="com.kelompok5.adoptmenow.account.RegisterFragment"
         android:label="RegisterFragment"
         tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/editAccountFragment"
+        android:name="com.kelompok5.adoptmenow.account.EditAccountFragment"
+        android:label="@string/edit_profile_title"
+        tools:layout="@layout/fragment_edit_account" />
 </navigation>
