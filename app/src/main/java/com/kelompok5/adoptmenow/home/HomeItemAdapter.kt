@@ -24,7 +24,10 @@ class HomeItemAdapter(
             .orderByKey().limitToLast(6).get()
             .addOnSuccessListener {
                 val items = it.getValue<HashMap<String, PetInfo>>()
-                if(items != null) updateList(items.values.toList())
+                if(items != null) {
+                    items.forEach {item -> item.value.id = item.key }
+                    updateList(items.values.toList())
+                }
             }.addOnFailureListener {
                 // TODO: Do something when failed to get the list
             }
@@ -84,7 +87,7 @@ class HomeItemDiffCallback : DiffUtil.ItemCallback<DataItem>() {
 
 sealed class DataItem {
     data class RecommendationItem(val petInfo: PetInfo): DataItem() {
-        override val id = petInfo.dataUrl
+        override val id = petInfo.id
     }
 
     class Header(): DataItem() {

@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="info"
-            type="com.kelompok5.adoptmenow.petinfo.PetInfo" />
+            name="viewModel"
+            type="com.kelompok5.adoptmenow.petinfo.PetInfoViewModel" />
     </data>
 
     <LinearLayout
@@ -41,13 +41,15 @@
                         android:background="@drawable/simple_border"
                         android:padding="1dp"
                         android:id="@+id/first_image"
+                        app:imageSrc="@{viewModel.firstImage}"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/image_container"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:id="@+id/image_container"
+                        android:visibility="@{viewModel.listVisibility}"
                         app:layout_constraintTop_toBottomOf="@id/first_image"
                         tools:listitem="@layout/list_item_info_image"
                         tools:itemCount="5" />
@@ -57,7 +59,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="32sp"
-                        android:text="@{info.title}"
+                        android:text="@{viewModel.pet.title}"
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         tools:text="Kucing Persia"
@@ -81,6 +83,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/status"
+                        android:text="@{viewModel.status}"
                         tools:text="@string/status_available"
                         android:textSize="@dimen/info_text_size"
                         app:layout_constraintTop_toTopOf="@id/status_label"
@@ -104,7 +107,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="12dp"
                         android:id="@+id/description"
-                        android:text="@{info.description}"
+                        android:text="@{viewModel.pet.description}"
                         android:textSize="20sp"
                         android:textColor="@color/black"
                         app:layout_constraintTop_toBottomOf="@id/description_label"
@@ -124,7 +127,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="14dp"
-                        android:text="@{info.phone}"
+                        android:text="@{viewModel.pet.phone}"
                         android:textSize="@dimen/info_text_size"
                         android:textColor="@color/black"
                         app:layout_constraintTop_toTopOf="@id/phone_icon"
@@ -147,7 +150,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="14dp"
-                        android:text="@{info.address}"
+                        android:text="@{viewModel.pet.address}"
                         android:textSize="@dimen/info_text_size"
                         android:textColor="@color/black"
                         app:layout_constraintTop_toTopOf="@id/location_icon"

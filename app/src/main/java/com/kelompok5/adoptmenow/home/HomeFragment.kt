@@ -28,7 +28,7 @@ class HomeFragment() : Fragment() {
         binding.recyclerView.adapter = HomeItemAdapter(this, RecommendationItemClickListener {
             this.findNavController().navigate(
                 MainFragmentDirections
-                    .actionMainFragmentToAdoptionInfoFragment(it))
+                    .actionMainFragmentToAdoptionInfoFragment(it, null))
         })
 
         val manager = GridLayoutManager(activity, 2)

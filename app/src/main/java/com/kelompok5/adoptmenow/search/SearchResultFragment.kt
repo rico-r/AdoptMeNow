@@ -30,7 +30,7 @@ class SearchResultFragment : Fragment() {
         adapter = SearchItemAdapter {
             this.findNavController().navigate(
                 SearchResultFragmentDirections
-                    .actionSearchResultFragmentToAdoptionInfoFragment(it))
+                    .actionSearchResultFragmentToAdoptionInfoFragment(it, null))
         }
 
         val args = SearchResultFragmentArgs.fromBundle(requireArguments())

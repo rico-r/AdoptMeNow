@@ -7,7 +7,7 @@ import java.io.Serializable
 
 data class PetInfo(
     @Exclude
-    var dataUrl: String = "",
+    var id: String = "",
     var title: String = "",
     var available: Boolean = false,
     var description: String = "",

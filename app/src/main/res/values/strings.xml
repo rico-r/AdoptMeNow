@@ -8,6 +8,7 @@
     <string name="search">Cari</string>
     <string name="recommendation">REKOMENDASI</string>
     <string name="share">Bagikan</string>
+    <string name="share_url">https://adoptme.now/post?id=%s</string>
     <string name="save">Simpan</string>
     <string name="adopt">Adopsi</string>
     <string name="adopter_identity">Identitas Calon Adopter</string>

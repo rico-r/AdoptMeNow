@@ -1,6 +1,10 @@
 package com.kelompok5.adoptmenow.petinfo
 
+import android.content.Intent
+import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -9,45 +13,85 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.firebase.database.getValue
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.kelompok5.adoptmenow.R
-import com.kelompok5.adoptmenow.bindImage
 import com.kelompok5.adoptmenow.databinding.FragmentPetInfoBinding
 
 class PetInfoFragment : Fragment() {
+
+    lateinit var binding: FragmentPetInfoBinding
+    lateinit var viewModel: PetInfoViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val viewModelFactory = PetInfoViewModelFactory(requireActivity().application)
+        viewModel =
+            ViewModelProvider(this, viewModelFactory)[PetInfoViewModel::class.java]
+
+        val arguments = PetInfoFragmentArgs.fromBundle(requireArguments())
+        arguments.petInfo?.let { viewModel.pet.value = it }
+
+        arguments.postId?.let { postId ->
+            Firebase.database.getReference("posts").child(postId)
+                .get().addOnSuccessListener {
+                    viewModel.pet.value = it.getValue<PetInfo>()
+                }
+            //TODO: Do something when failed to get info
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        val binding: FragmentPetInfoBinding = DataBindingUtil.inflate(
+        binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pet_info, container, false)
-        val arguments = PetInfoFragmentArgs.fromBundle(requireArguments())
-        binding.info = arguments.petInfo
+
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+
         binding.adoptButton.setOnClickListener {
             findNavController().navigate(
                 PetInfoFragmentDirections
                     .actionAdoptionInfoFragmentToAdoptionFormFragment())
         }
 
-        val images = arguments.petInfo.images
-        bindImage(binding.firstImage, images[0])
+        val imageAdapter = ImageListAdapter()
+        val layoutManager = GridLayoutManager(requireContext(), 1, GridLayoutManager.HORIZONTAL, false)
+        binding.imageContainer.layoutManager =  layoutManager
+        binding.imageContainer.adapter = imageAdapter
 
-        if(images.size == 1) {
-            binding.imageContainer.visibility = View.GONE
-        } else {
-            val layoutManager = GridLayoutManager(requireContext(), 1, GridLayoutManager.HORIZONTAL, false)
-            binding.imageContainer.layoutManager =  layoutManager
-            binding.imageContainer.adapter = ImageListAdapter(images.drop(1))
+        viewModel.images.observe(viewLifecycleOwner) { images ->
+            imageAdapter.submitList(images)
         }
-
-        // Set status text
-        binding.status.text = arguments.petInfo.getStatus(resources)
 
         setHasOptionsMenu(true)
         return binding.root
+    }
+
+    private fun share() {
+        val pet = viewModel.pet.value ?: return
+        val imgDrawable = binding.firstImage.drawable as BitmapDrawable
+
+        val imgBitmapPath: String =
+            MediaStore.Images.Media.insertImage(requireActivity().contentResolver, imgDrawable.bitmap, "result", null)
+        val imgBitmapUri: Uri = Uri.parse(imgBitmapPath)
+        val shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.type = "image/*"
+        shareIntent.putExtra(Intent.EXTRA_STREAM, imgBitmapUri)
+        shareIntent.putExtra(Intent.EXTRA_TEXT,
+            "${pet.title}\n\n" +
+                    "${pet.description}\n" +
+                    "${resources.getString(R.string.address)}: ${pet.address}" +
+                    "${resources.getString(R.string.phone_number)}: ${pet.phone}" +
+                    resources.getString(R.string.share_url, pet.id))
+        startActivity(Intent.createChooser(shareIntent, resources.getString(R.string.share)))
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -56,7 +100,9 @@ class PetInfoFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // TODO: share feature here
+        when(item.itemId) {
+            R.id.share -> share()
+        }
         return super.onOptionsItemSelected(item)
     }
 }

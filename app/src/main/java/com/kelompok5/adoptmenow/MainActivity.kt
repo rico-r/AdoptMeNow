@@ -20,6 +20,11 @@ class MainActivity : AppCompatActivity() {
             navController.navigate(
                 LoginFragmentDirections
                     .actionLoginFragmentToMainFragment())
+            intent.data?.let {
+                navController.navigate(
+                    MainFragmentDirections.actionMainFragmentToAdoptionInfoFragment(
+                        null, it.getQueryParameter("id")))
+            }
         }
     }
 

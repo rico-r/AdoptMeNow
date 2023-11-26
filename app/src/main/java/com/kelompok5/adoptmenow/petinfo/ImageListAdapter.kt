@@ -7,13 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kelompok5.adoptmenow.databinding.ListItemInfoImageBinding
 
-class ImageListAdapter(
-    private val urls: List<String>
-) : ListAdapter<String, ImageListAdapter.ImageViewHolder>(DiffCallback) {
-
-    init {
-        submitList(urls)
-    }
+class ImageListAdapter : ListAdapter<String, ImageListAdapter.ImageViewHolder>(DiffCallback) {
 
     class ImageViewHolder(private var binding: ListItemInfoImageBinding):
         RecyclerView.ViewHolder(binding.root) {

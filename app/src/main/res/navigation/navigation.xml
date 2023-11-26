@@ -35,7 +35,12 @@
             app:destination="@id/adoptionFormFragment" />
         <argument
             android:name="petInfo"
-            app:argType="com.kelompok5.adoptmenow.petinfo.PetInfo" />
+            app:argType="com.kelompok5.adoptmenow.petinfo.PetInfo"
+            app:nullable="true" />
+        <argument
+            android:name="postId"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/adoptionFormFragment"
