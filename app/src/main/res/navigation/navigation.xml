@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_mainFragment_to_editAccountFragment"
             app:destination="@id/editAccountFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_createPostFragment"
+            app:destination="@id/createPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/adoptionInfoFragment"
@@ -83,4 +86,9 @@
         android:name="com.kelompok5.adoptmenow.account.EditAccountFragment"
         android:label="@string/edit_profile_title"
         tools:layout="@layout/fragment_edit_account" />
+    <fragment
+        android:id="@+id/createPostFragment"
+        android:name="com.kelompok5.adoptmenow.post.CreatePostFragment"
+        android:label="@string/create_post_title"
+        tools:layout="@layout/fragment_create_post" />
 </navigation>

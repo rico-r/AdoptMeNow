@@ -58,5 +58,18 @@
 
         </LinearLayout>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/create_post_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="32dp"
+            android:src="@drawable/ic_plus"
+            app:tint="@color/white"
+            android:contentDescription="@string/create_post"
+            app:backgroundTint="?colorPrimary"
+            app:shapeAppearance="@style/Widget.Material3.FloatingActionButton.Primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

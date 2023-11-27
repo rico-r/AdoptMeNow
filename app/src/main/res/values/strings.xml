@@ -27,6 +27,7 @@
     <string name="status_available"><font color="green">Tersedia</font></string>
     <string name="status_not_available"><font color="red">Sudah Diadopsi</font></string>
     <string name="description_label">Deskripsi : </string>
+    <string name="description">Deskripsi</string>
     <string name="pet_info">Informasi Hewan</string>
     <string name="adoption_form">Formulir Adopsi</string>
     <string name="view_detail">Lihat Detail</string>
@@ -54,4 +55,10 @@
     <string name="save_failed">Gagal menyimpan data</string>
     <string name="profile_saved">Profil berhasil disimpan!</string>
     <string name="my_post">Postingan Saya</string>
+    <string name="pet_kind">Jenis Hewan</string>
+    <string name="add_image">Tambah Gambar</string>
+    <string name="create_post">Buat Post</string>
+    <string name="create_post_title">POST</string>
+    <string name="creating_post">Menyimpan post…</string>
+    <string name="post_created">Post berhasil disimpan!</string>
 </resources>

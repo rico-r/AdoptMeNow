@@ -50,6 +50,11 @@ class HomeFragment() : Fragment() {
             true
         }
 
+        binding.createPostButton.setOnClickListener {
+            this.findNavController()
+                .navigate(MainFragmentDirections.actionMainFragmentToCreatePostFragment())
+        }
+
         return binding.root
     }
 
