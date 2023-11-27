@@ -31,6 +31,7 @@ class HomeItemAdapter(
             }.addOnFailureListener {
                 // TODO: Do something when failed to get the list
             }
+        submitList(listOf(header))
     }
 
     private fun updateList(items: List<PetInfo>) {

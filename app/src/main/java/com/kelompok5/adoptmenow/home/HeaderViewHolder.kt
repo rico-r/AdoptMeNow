@@ -12,18 +12,22 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.kelompok5.adoptmenow.R
 import com.kelompok5.adoptmenow.databinding.HomeContentHeaderBinding
+import java.util.Timer
+import java.util.TimerTask
+
+private const val CAROUSEL_ROLL_DURATION = 10000L
 
 class HeaderViewHolder(
     val binding: HomeContentHeaderBinding,
     val homeFragment: HomeFragment
 ): RecyclerView.ViewHolder(binding.root) {
 
-    var images: List<String>? = null
+    var images = listOf<String>()
 
     fun bind() {
         Firebase.database.getReference("carousel").get()
             .addOnSuccessListener {data ->
-                images = data.getValue<List<String>>()
+                images = data.getValue<List<String>>()!!
                 bindAdapter()
             }.addOnFailureListener {
                 Log.i("FB_DB", "Failed to get list of carousel")
@@ -33,16 +37,22 @@ class HeaderViewHolder(
     private fun bindAdapter() {
         binding.carousel.adapter = object: FragmentStateAdapter(homeFragment) {
             override fun getItemCount(): Int {
-                return images!!.size
+                return images.size
             }
 
             override fun createFragment(position: Int): Fragment {
                 val result = CarouselItem()
-                result.imageUrl = images!![position]
+                result.imageUrl = images[position]
                 result.header = this@HeaderViewHolder
                 return result
             }
         }
+        Timer().schedule(object: TimerTask() {
+            override fun run() {
+                val carousel = binding.carousel
+                carousel.currentItem = (carousel.currentItem + 1) % carousel.adapter!!.itemCount
+            }
+        }, CAROUSEL_ROLL_DURATION, CAROUSEL_ROLL_DURATION)
     }
 
     companion object {

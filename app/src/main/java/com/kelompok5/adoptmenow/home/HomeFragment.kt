@@ -54,9 +54,11 @@ class HomeFragment() : Fragment() {
     }
 
     fun searchPost() {
+        val query = binding.searchQuery.text.toString()
+        if(query.isEmpty()) return
         this.findNavController().navigate(
             MainFragmentDirections
-                .actionMainFragmentToSearchResultFragment(binding.searchQuery.text.toString()))
+                .actionMainFragmentToSearchResultFragment(query))
     }
 
 }
