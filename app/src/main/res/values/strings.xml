@@ -54,6 +54,7 @@
     <string name="upload_image_failed">Gagal mengupload gambar</string>
     <string name="save_failed">Gagal menyimpan data</string>
     <string name="profile_saved">Profil berhasil disimpan!</string>
+    <string name="saving_profile">Menyimpan profil...</string>
     <string name="my_post">Postingan Saya</string>
     <string name="pet_kind">Jenis Hewan</string>
     <string name="add_image">Tambah Gambar</string>

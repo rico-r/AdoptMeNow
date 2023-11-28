@@ -1,5 +1,6 @@
 package com.kelompok5.adoptmenow.account
 
+import android.app.ProgressDialog
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
@@ -14,20 +15,24 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.kelompok5.adoptmenow.R
 import com.kelompok5.adoptmenow.databinding.FragmentEditAccountBinding
-import kotlin.random.Random
+import com.kelompok5.adoptmenow.network.FirebaseData
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class EditAccountFragment : Fragment() {
 
-    lateinit var binding: FragmentEditAccountBinding
-    lateinit var viewModel: AccountViewModel
-    lateinit var getContent: ActivityResultLauncher<String>
-    var newImageUri: Uri? = null
-    var newImagePath: String? = null
+    private lateinit var binding: FragmentEditAccountBinding
+    private lateinit var viewModel: AccountViewModel
+    private lateinit var getContent: ActivityResultLauncher<String>
+    private var newImageUri: Uri? = null
+    private lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +56,7 @@ class EditAccountFragment : Fragment() {
         binding.lifecycleOwner = this
 
         binding.changePhotoButton.setOnClickListener(::changePhoto)
-        binding.saveButton.setOnClickListener(::saveImage)
+        binding.saveButton.setOnClickListener(::save)
 
         return binding.root
     }
@@ -60,72 +65,51 @@ class EditAccountFragment : Fragment() {
         getContent.launch("image/*")
     }
 
-    private fun getImageUrl(): String {
-        return if(newImageUri == null) {
-            viewModel.user.value!!.photo
-        } else if(newImagePath == null) {
-            newImagePath = "/users/${Firebase.auth.currentUser!!.uid}/profile-${Random.nextInt()}.jpg"
-            newImagePath!!
-        } else {
-            newImagePath!!
-        }
+    private fun save(view: View) {
+        progressDialog = ProgressDialog.show(requireContext(), "", resources.getString(R.string.saving_profile), true)
+        GlobalScope.launch(Dispatchers.IO) { save() }
     }
 
-    private fun saveImage(view: View) {
-        binding.loading.visibility = View.VISIBLE
-        // Directly save the data if profile image is not changed
-        if(newImageUri == null) {
-            saveData()
-            return
-        }
-        // TODO: Scale down the image to save storage
-        // TODO: Do something when upload failed
-        val oldPhoto = viewModel.user.value!!.photo
-        if(oldPhoto.isNotEmpty()) {
-            // Delete old photo
-            Firebase.storage.getReference(oldPhoto).delete()
-        }
-        Firebase.storage.getReference(getImageUrl())
-            .putStream(requireActivity().contentResolver.openInputStream(newImageUri!!)!!)
-            .addOnSuccessListener { saveData() }
-            .addOnFailureListener { onFailed(R.string.upload_image_failed) }
+    private fun onSaved() {
+        progressDialog.dismiss()
+        Toast.makeText(requireContext(), R.string.profile_saved, Toast.LENGTH_SHORT).show()
+        this.findNavController().navigateUp()
     }
 
-    private fun saveData() {
+    private suspend fun save() {
+        val currentUser = Firebase.auth.currentUser!!
+        val user = viewModel.user.value!!
         val email = binding.email.text.toString()
         val password = binding.password.text.toString()
         val newData = UserInfo(
             binding.name.text.toString(),
-            getImageUrl(),
+            user.photo,
             email,
             binding.address.text.toString(),
             binding.phone.text.toString(),
         )
-        val currentUser = Firebase.auth.currentUser!!
+        // Update photo if changed
+        newImageUri?.let {
+            newData.photo = FirebaseData.uploadFiles(listOf(it))[0]
+            try {
+                // Delete old photo
+                Firebase.storage.getReference(user.photo).delete().await()
+            } catch (_: Exception) {}
+        }
         // Update email if changed
         if(currentUser.email != email) {
-            currentUser.updateEmail(email)
+            try {
+                currentUser.updateEmail(email).await()
+            } catch (_: Exception) {}
         }
         // Update password if changed
         if(password.isNotEmpty()) {
-            currentUser.updatePassword(password)
+            try {
+                currentUser.updatePassword(password).await()
+            } catch (_: Exception) {}
         }
-        Firebase.database.getReference("users")
-            .child(currentUser.uid)
-            .setValue(newData)
-            .addOnSuccessListener { onSaveSuccess() }
-            .addOnFailureListener { onFailed(R.string.save_failed) }
-    }
-
-    private fun onFailed(msgResId: Int) {
-        binding.loading.visibility = View.GONE
-        Toast.makeText(requireContext(), msgResId, Toast.LENGTH_SHORT).show()
-    }
-
-    private fun onSaveSuccess() {
-        this.findNavController().navigateUp()
-        binding.loading.visibility = View.GONE
-        Toast.makeText(requireContext(), R.string.profile_saved, Toast.LENGTH_SHORT).show()
+        FirebaseData.userRef.setValue(newData).await()
+        withContext(Dispatchers.Main) { onSaved() }
     }
 
 }

@@ -156,28 +156,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/password" />
 
-        <View
-            android:id="@+id/loading_overlay"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#60000000" />
-
-        <ProgressBar
-            android:id="@+id/progress_circular"
-            style="?android:progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:constraint_referenced_ids="progress_circular,loading_overlay" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
