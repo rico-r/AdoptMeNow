@@ -58,7 +58,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:text="@tools:sample/lorem/random" />
 
-            <Button
+            <TextView
                 android:id="@+id/form_button"
                 style="@style/primaryButton"
                 android:layout_width="wrap_content"
@@ -66,6 +66,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/form"
+                android:textSize="14sp"
                 app:layout_constraintTop_toBottomOf="@id/description"
                 app:layout_constraintEnd_toEndOf="parent" />
 

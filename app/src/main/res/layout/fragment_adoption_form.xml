@@ -142,14 +142,13 @@
                     android:gravity="top|start"
                     app:layout_constraintTop_toBottomOf="@id/adopt_reason_label" />
 
-                <Button
+                <TextView
                     android:id="@+id/send_button"
                     style="@style/primaryButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:text="@string/send"
-                    android:textSize="20sp"
                     app:layout_constraintTop_toBottomOf="@id/adopt_reason"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
