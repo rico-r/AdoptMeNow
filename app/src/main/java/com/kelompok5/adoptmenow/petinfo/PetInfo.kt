@@ -1,5 +1,6 @@
 package com.kelompok5.adoptmenow.petinfo
 
+import androidx.recyclerview.widget.DiffUtil
 import com.google.firebase.database.Exclude
 import com.kelompok5.adoptmenow.R
 import java.io.Serializable
@@ -17,5 +18,15 @@ data class PetInfo(
 ) : Serializable {
     fun getStatus(): Int {
         return if(available) R.string.status_available else R.string.status_not_available
+    }
+}
+
+class PetInfoDiffCallback : DiffUtil.ItemCallback<PetInfo>() {
+    override fun areItemsTheSame(oldItem: PetInfo, newItem: PetInfo): Boolean {
+        return oldItem == newItem
+    }
+
+    override fun areContentsTheSame(oldItem: PetInfo, newItem: PetInfo): Boolean {
+        return oldItem == newItem
     }
 }

@@ -2,16 +2,16 @@ package com.kelompok5.adoptmenow.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kelompok5.adoptmenow.bindImage
 import com.kelompok5.adoptmenow.databinding.ListItemSearchResultBinding
 import com.kelompok5.adoptmenow.petinfo.PetInfo
+import com.kelompok5.adoptmenow.petinfo.PetInfoDiffCallback
 
 class SearchItemAdapter(
     private val clickListener: (item: PetInfo) -> Unit
-) : ListAdapter<PetInfo, RecyclerView.ViewHolder>(SearchItemDiffCallback()) {
+) : ListAdapter<PetInfo, RecyclerView.ViewHolder>(PetInfoDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return SearchItemViewHolder.from(parent)
@@ -30,7 +30,7 @@ class SearchItemAdapter(
         fun bind(item: PetInfo, clickListener: (item: PetInfo) -> Unit, position: Int) {
             bindImage(binding.image, item.images[0])
             binding.title.text = item.title
-            binding.status.text = item.getStatus(binding.root.resources)
+            binding.status.setText(item.getStatus())
             binding.viewButton.setOnClickListener { clickListener(item) }
             binding.executePendingBindings()
         }
@@ -43,15 +43,4 @@ class SearchItemAdapter(
             }
         }
     }
-}
-
-class SearchItemDiffCallback : DiffUtil.ItemCallback<PetInfo>() {
-    override fun areItemsTheSame(oldItem: PetInfo, newItem: PetInfo): Boolean {
-        return oldItem == newItem
-    }
-
-    override fun areContentsTheSame(oldItem: PetInfo, newItem: PetInfo): Boolean {
-        return oldItem == newItem
-    }
-
 }
