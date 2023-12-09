@@ -32,6 +32,7 @@
     <string name="description">Deskripsi</string>
     <string name="pet_info">Informasi Hewan</string>
     <string name="adoption_form">Formulir Adopsi</string>
+    <string name="form_submited">Formulir adopsi berhasil dikirim!</string>
     <string name="view_detail">Lihat Detail</string>
     <string name="post">Post</string>
     <string name="form">form</string>

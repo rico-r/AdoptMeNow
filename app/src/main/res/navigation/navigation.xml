@@ -49,7 +49,11 @@
         android:id="@+id/adoptionFormFragment"
         android:name="com.kelompok5.adoptmenow.adoptform.AdoptionFormFragment"
         android:label="@string/adoption_form"
-        tools:layout="@layout/fragment_adoption_form" />
+        tools:layout="@layout/fragment_adoption_form" >
+        <argument
+            android:name="post"
+            app:argType="com.kelompok5.adoptmenow.petinfo.PetInfo" />
+    </fragment>
     <fragment
         android:id="@+id/searchResultFragment"
         android:name="com.kelompok5.adoptmenow.search.SearchResultFragment"

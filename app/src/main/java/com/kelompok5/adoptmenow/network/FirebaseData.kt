@@ -31,6 +31,9 @@ class FirebaseData {
         val postRef: DatabaseReference
             get() = Firebase.database.getReference("posts")
 
+        val formRef: DatabaseReference
+            get() = Firebase.database.getReference("forms")
+
         suspend fun uploadFiles(files: List<Uri>): List<String> {
             val fileRef: StorageReference = Firebase.storage.getReference(
                 "/users/${uid}")

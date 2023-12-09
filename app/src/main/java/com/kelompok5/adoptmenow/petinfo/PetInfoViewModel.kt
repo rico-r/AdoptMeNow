@@ -5,11 +5,13 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
+import com.kelompok5.adoptmenow.history.AdoptHistoryViewModel
 import com.kelompok5.adoptmenow.network.FirebaseData
 import com.kelompok5.adoptmenow.saved.SavedViewModel
 
 class PetInfoViewModel(
-    private val savedViewModel: SavedViewModel
+    private val savedViewModel: SavedViewModel,
+    private val adoptHistoryViewModel: AdoptHistoryViewModel
 ) : ViewModel() {
     val pet = MutableLiveData<PetInfo>()
     val listVisibility = pet.map { visibleIf(pet.value?.images!!.size > 1) }
@@ -29,7 +31,16 @@ class PetInfoViewModel(
     }
     val saveButtonVisibility = _isSaved.map { visibleIf(!it) }
     val unsaveButtonVisibility = _isSaved.map { visibleIf(it) }
-    val adoptButtonEnabled = pet.map { it.owner.isNotEmpty() && it.owner != FirebaseData.uid }
+    val adoptButtonEnabled = MediatorLiveData<Boolean>().apply {
+        val update: () -> Unit = {
+            pet.value?.let {
+                this.value = it.owner.isNotEmpty() && it.owner != FirebaseData.uid
+                        && !adoptHistoryViewModel.isAdopted(it)
+            }
+        }
+        addSource(pet) { update() }
+        addSource(adoptHistoryViewModel.adoptedId) { update() }
+    }
 
     private fun visibleIf(isVisible: Boolean): Int {
         return if(isVisible) View.VISIBLE else View.GONE

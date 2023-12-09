@@ -22,6 +22,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.kelompok5.adoptmenow.R
 import com.kelompok5.adoptmenow.databinding.FragmentPetInfoBinding
+import com.kelompok5.adoptmenow.history.AdoptHistoryViewModel
 import com.kelompok5.adoptmenow.saved.SavedViewModel
 
 class PetInfoFragment : Fragment() {
@@ -31,8 +32,10 @@ class PetInfoFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val savedViewModel = ViewModelProvider(requireActivity())[SavedViewModel::class.java]
-        val viewModelFactory = PetInfoViewModelFactory(savedViewModel)
+        val activityViewModelProvider = ViewModelProvider(requireActivity())
+        val savedViewModel = activityViewModelProvider[SavedViewModel::class.java]
+        val adoptHistoryViewModel = activityViewModelProvider[AdoptHistoryViewModel::class.java]
+        val viewModelFactory = PetInfoViewModelFactory(savedViewModel, adoptHistoryViewModel)
         viewModel =
             ViewModelProvider(this, viewModelFactory)[PetInfoViewModel::class.java]
 
@@ -62,7 +65,7 @@ class PetInfoFragment : Fragment() {
         binding.adoptButton.setOnClickListener {
             findNavController().navigate(
                 PetInfoFragmentDirections
-                    .actionAdoptionInfoFragmentToAdoptionFormFragment())
+                    .actionAdoptionInfoFragmentToAdoptionFormFragment(viewModel.pet.value!!))
         }
 
         binding.saveButton.setOnClickListener {

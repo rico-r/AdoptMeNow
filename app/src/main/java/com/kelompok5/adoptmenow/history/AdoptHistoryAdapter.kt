@@ -2,29 +2,21 @@ package com.kelompok5.adoptmenow.history
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.kelompok5.adoptmenow.adoptform.AdoptionForm
+import com.kelompok5.adoptmenow.adoptform.AdoptionFormDiffCallback
 import com.kelompok5.adoptmenow.databinding.ListItemAdoptHistoryBinding
 import java.util.Date
 
 class AdoptHistoryAdapter(
-    val clickListener: (item: DataItem) -> Unit
-) : ListAdapter<AdoptHistoryAdapter.DataItem, RecyclerView.ViewHolder>(DataItemDiffCallback()) {
-
-    init {
-        val items = List(4) {position ->
-            DataItem(
-                "Title $position",
-                "Description $position",
-                Date()
-            )
-        }
-        submitList(items)
-    }
+    val clickListener: (item: AdoptionForm) -> Unit
+) : ListAdapter<AdoptionForm, RecyclerView.ViewHolder>(AdoptionFormDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return ViewHolder.from(parent)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = ListItemAdoptHistoryBinding.inflate(layoutInflater, parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -32,42 +24,17 @@ class AdoptHistoryAdapter(
     }
 
     class ViewHolder(val binding: ListItemAdoptHistoryBinding) :  RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: DataItem, clickListener: (item: DataItem) -> Unit, position: Int) {
-            binding.title.text = item.title
-            binding.description.text = item.description
+        fun bind(item: AdoptionForm, clickListener: (item: AdoptionForm) -> Unit, position: Int) {
+            val date = Date(item.date)
+            binding.title.text = item.post!!.title
+            binding.description.text = item.post!!.description
             binding.date.text = String.format("%02d-%02d-%04d",
-                item.date.day,
-                item.date.month,
-                item.date.year)
+                date.date, date.month, date.year + 1900)
             binding.root.setOnClickListener {
                 clickListener(item)
             }
             binding.executePendingBindings()
         }
-
-        companion object {
-            fun from(parent: ViewGroup): ViewHolder {
-                val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ListItemAdoptHistoryBinding.inflate(layoutInflater, parent, false)
-                return ViewHolder(binding)
-            }
-        }
     }
-
-    class DataItemDiffCallback : DiffUtil.ItemCallback<DataItem>() {
-        override fun areItemsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
-            return oldItem == newItem
-        }
-
-        override fun areContentsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
-            return oldItem == newItem
-        }
-    }
-
-    data class DataItem(
-        var title: String,
-        var description: String,
-        var date: Date
-    )
 
 }
