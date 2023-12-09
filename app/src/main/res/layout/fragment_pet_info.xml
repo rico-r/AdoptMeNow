@@ -83,7 +83,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/status"
-                        android:text="@{viewModel.status}"
+                        android:text="@{viewModel.pet.status}"
                         tools:text="@string/status_available"
                         android:textSize="@dimen/info_text_size"
                         app:layout_constraintTop_toTopOf="@id/status_label"
@@ -175,9 +175,26 @@
                 android:layout_marginStart="20dp"
                 android:id="@+id/save_button"
                 android:text="@string/save"
+                android:visibility="@{viewModel.saveButtonVisibility}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
+
+            <TextView
+                android:id="@+id/unsave_button"
+                style="@style/primaryButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginStart="20dp"
+                android:text="@string/unsave"
+                android:visibility="@{viewModel.unsaveButtonVisibility}"
+                android:onClick="@{() -> viewModel.onUnsave()}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:visibility="gone"/>
 
             <TextView
                 style="@style/primaryButton"

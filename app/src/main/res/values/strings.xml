@@ -10,6 +10,8 @@
     <string name="share">Bagikan</string>
     <string name="share_url">https://adoptme.now/post?id=%s</string>
     <string name="save">Simpan</string>
+    <string name="unsave">Batal Simpan</string>
+    <string name="post_saved">Post berhasil disimpan!</string>
     <string name="adopt">Adopsi</string>
     <string name="adopter_identity">Identitas Calon Adopter</string>
     <string name="full_name">Nama lengkap</string>
@@ -62,4 +64,5 @@
     <string name="create_post_title">POST</string>
     <string name="creating_post">Menyimpan post…</string>
     <string name="post_created">Post berhasil disimpan!</string>
+    <string name="edit">Edit</string>
 </resources>

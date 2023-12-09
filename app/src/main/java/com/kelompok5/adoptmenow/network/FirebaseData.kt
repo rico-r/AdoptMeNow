@@ -4,6 +4,7 @@ import android.net.Uri
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.getValue
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
@@ -23,6 +24,12 @@ class FirebaseData {
 
         val userRef: DatabaseReference
             get() = Firebase.database.getReference("users").child(uid)
+
+        val savedRef: DatabaseReference
+            get() = Firebase.database.getReference("saved").child(uid)
+
+        val postRef: DatabaseReference
+            get() = Firebase.database.getReference("posts")
 
         suspend fun uploadFiles(files: List<Uri>): List<String> {
             val fileRef: StorageReference = Firebase.storage.getReference(
@@ -45,7 +52,26 @@ class FirebaseData {
         }
 
         fun createPost(post: PetInfo): Task<Void> {
-            return Firebase.database.getReference("posts").push().setValue(post)
+            return postRef.push().setValue(post)
+        }
+
+        fun getPostRef(id: String): DatabaseReference {
+            return postRef.child(id)
+        }
+
+        fun getPostData(id: String, onSuccess: (PetInfo?) -> Unit) {
+            getPostRef(id).get().addOnSuccessListener {
+                val result = it.getValue<PetInfo>()
+                result?.id = id
+                onSuccess(result)
+            }
+        }
+
+        suspend fun getPostData(id: String): PetInfo? {
+            val snapshot = getPostRef(id).get().await()
+            val result = snapshot.getValue<PetInfo>()
+            result?.id = id
+            return result
         }
 
     }

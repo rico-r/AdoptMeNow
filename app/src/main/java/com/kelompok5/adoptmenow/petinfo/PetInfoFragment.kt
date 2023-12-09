@@ -11,6 +11,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -21,6 +22,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.kelompok5.adoptmenow.R
 import com.kelompok5.adoptmenow.databinding.FragmentPetInfoBinding
+import com.kelompok5.adoptmenow.saved.SavedViewModel
 
 class PetInfoFragment : Fragment() {
 
@@ -29,7 +31,8 @@ class PetInfoFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val viewModelFactory = PetInfoViewModelFactory(requireActivity().application)
+        val savedViewModel = ViewModelProvider(requireActivity())[SavedViewModel::class.java]
+        val viewModelFactory = PetInfoViewModelFactory(savedViewModel)
         viewModel =
             ViewModelProvider(this, viewModelFactory)[PetInfoViewModel::class.java]
 
@@ -60,6 +63,11 @@ class PetInfoFragment : Fragment() {
             findNavController().navigate(
                 PetInfoFragmentDirections
                     .actionAdoptionInfoFragmentToAdoptionFormFragment())
+        }
+
+        binding.saveButton.setOnClickListener {
+            viewModel.onSave()
+            Toast.makeText(requireContext(), resources.getString(R.string.post_saved), Toast.LENGTH_SHORT).show()
         }
 
         val imageAdapter = ImageListAdapter()
