@@ -6,12 +6,14 @@ import androidx.lifecycle.map
 import com.google.firebase.database.getValue
 import com.kelompok5.adoptmenow.adoptform.AdoptionForm
 import com.kelompok5.adoptmenow.network.FirebaseData
+import com.kelompok5.adoptmenow.notification.NotificationItem
 import com.kelompok5.adoptmenow.petinfo.PetInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.util.Date
 
 class AdoptHistoryViewModel : ViewModel() {
     val list = MutableLiveData(listOf<AdoptionForm>())
@@ -28,6 +30,13 @@ class AdoptHistoryViewModel : ViewModel() {
     fun add(form: AdoptionForm) {
         list.value = list.value!! + listOf(form)
         FirebaseData.formRef.push().setValue(form)
+        FirebaseData.notifyRef.child(form.to).push().setValue(NotificationItem.AdoptionRequest(
+            form.name,
+            form.post!!.title,
+            form.from,
+            form.postId,
+            Date().time
+        ))
     }
 
     private suspend fun onGetHistory() {

@@ -67,5 +67,7 @@
     <string name="post_created">Post berhasil disimpan!</string>
     <string name="edit">Edit</string>
     <string name="notification">Notifikasi</string>
+    <string name="notification_adopt_request">%s ingin mengadopsi %s</string>
+    <string name="notification_adopt_response">Cek detail pengajuanmu %s</string>
     <string name="today">Hari ini</string>
 </resources>
