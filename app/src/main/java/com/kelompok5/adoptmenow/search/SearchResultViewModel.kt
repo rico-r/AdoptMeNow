@@ -18,9 +18,11 @@ class SearchResultViewModel(
         val query = originQuery.lowercase()
         Firebase.database.getReference("posts").orderByChild("title")
             .startAt(query).endAt(query + "\uf8ff")
-            .get().addOnSuccessListener {
-                val items = it.getValue<HashMap<String, PetInfo>>()
-                searchResult.value = items?.values?.toList() ?: listOf()
+            .get().addOnSuccessListener {snapshot ->
+                val items = snapshot.getValue<HashMap<String, PetInfo>>() ?: return@addOnSuccessListener
+                items.forEach { it.value.id = it.key }
+                val list = items.values.toList()
+                searchResult.value = list
             }.addOnFailureListener {
                 // TODO: Do something when failed to get the list
                 it.printStackTrace()
