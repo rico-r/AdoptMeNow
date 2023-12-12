@@ -72,6 +72,7 @@
     <string name="create_post_title">POST</string>
     <string name="creating_post">Menyimpan post…</string>
     <string name="post_created">Post berhasil disimpan!</string>
+    <string name="require_image">Post harus memiliki setidaknya 1 gambar!</string>
     <string name="edit">Edit</string>
     <string name="notification">Notifikasi</string>
     <string name="notification_adopt_request">%s ingin mengadopsi %s</string>

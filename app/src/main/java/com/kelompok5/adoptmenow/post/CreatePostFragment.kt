@@ -58,6 +58,13 @@ class CreatePostFragment : Fragment() {
     }
 
     private fun onSubmit(view: View) {
+        var ok = true
+        val images = adapter.currentList.filterNotNull()
+        if(images.isEmpty()) {
+            Toast.makeText(requireContext(), R.string.require_image, Toast.LENGTH_SHORT).show()
+            ok = false
+        }
+        if(!ok) return
         progressDialog = ProgressDialog.show(requireContext(), "", resources.getString(R.string.creating_post), true)
         GlobalScope.launch(Dispatchers.IO) { createPost() }
     }
