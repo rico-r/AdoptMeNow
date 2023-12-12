@@ -36,6 +36,12 @@
         <action
             android:id="@+id/action_mainFragment_to_myPostFragment"
             app:destination="@id/myPostFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_myPostFragment2"
+            app:destination="@id/myPostFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_editPostFragment"
+            app:destination="@id/editPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/adoptionInfoFragment"
@@ -126,5 +132,16 @@
         <action
             android:id="@+id/action_myPostFragment_to_adoptionInfoFragment"
             app:destination="@id/adoptionInfoFragment" />
+        <action
+            android:id="@+id/action_myPostFragment_to_editPostFragment"
+            app:destination="@id/editPostFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editPostFragment"
+        android:name="com.kelompok5.adoptmenow.post.EditPostFragment"
+        android:label="@string/edit_post_title"
+        tools:layout="@layout/fragment_create_post">
+        <argument android:name="data"
+            app:argType="com.kelompok5.adoptmenow.petinfo.PetInfo" />
     </fragment>
 </navigation>

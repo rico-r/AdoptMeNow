@@ -74,5 +74,8 @@ class MyPostFragment : Fragment() {
     }
 
     private fun onItemEdit(post: PetInfo) {
+        this.findNavController().navigate(
+            MyPostFragmentDirections
+                .actionMyPostFragmentToEditPostFragment(post))
     }
 }

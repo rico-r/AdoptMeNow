@@ -69,6 +69,9 @@ class AccountFragment() : Fragment() {
     }
 
     private fun editPost(view: View) {
+        this.findNavController().navigate(
+            MainFragmentDirections
+                .actionMainFragmentToEditPostFragment(postViewModel.list.value!![0]))
     }
 
     private fun openPost(view: View) {

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kelompok5.adoptmenow.R
+import com.kelompok5.adoptmenow.bindImage
 import com.kelompok5.adoptmenow.databinding.ListItemUploadPostImageBinding
 
 private const val IMAGE_COUNT = 6
@@ -17,12 +18,20 @@ private const val IMAGE_COUNT = 6
 class UploadImageListAdapter(
     private val resources: Resources,
     private val contentResolver: ContentResolver,
-    private val changeImage: (Int) -> Unit
+    private val changeImage: (Int) -> Unit,
+    oldImage: List<String> = listOf()
 ): ListAdapter<Uri?, UploadImageListAdapter.ImageViewHolder>(DiffCallback) {
 
     private val items = MutableList<Uri?>(IMAGE_COUNT) { null }
 
     init {
+        var i = 0
+        for(item in oldImage) {
+            items[i++] = Uri.Builder()
+                .scheme("gs")
+                .path(item)
+                .build()
+        }
         submitList(items)
     }
 
@@ -34,8 +43,12 @@ class UploadImageListAdapter(
         val imageView = holder.binding.image
         val item = items[position]
         if(item != null) {
-            val img = contentResolver.openInputStream(item)
-            imageView.setImageDrawable(BitmapDrawable(resources, img))
+            if(item.scheme == "gs") {
+                bindImage(imageView, item.path)
+            } else {
+                val img = contentResolver.openInputStream(item)
+                imageView.setImageDrawable(BitmapDrawable(resources, img))
+            }
         } else {
             imageView.setImageResource(R.drawable.ic_plus)
         }
