@@ -61,6 +61,11 @@
     <string name="my_post">Postingan Saya</string>
     <string name="see_all">Lihat semua &gt;</string>
     <string name="no_post">Belum ada post</string>
+    <string name="confirm_delete_post">Anda yakin ingin menghapus post dengan judul "%s"?</string>
+    <string name="deleting_post">Menghapus post "%s"...</string>
+    <string name="delete_post_success">Post berhasil dihapus</string>
+    <string name="yes">Ya</string>
+    <string name="cancel">Batal</string>
     <string name="pet_kind">Jenis Hewan</string>
     <string name="add_image">Tambah Gambar</string>
     <string name="create_post">Buat Post</string>

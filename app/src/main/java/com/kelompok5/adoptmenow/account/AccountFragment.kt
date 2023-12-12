@@ -44,6 +44,7 @@ class AccountFragment() : Fragment() {
         binding.editButton.setOnClickListener(::edit)
         binding.editPostButton.setOnClickListener(::editPost)
         binding.postCard.setOnClickListener(::openPost)
+        binding.seeAll.setOnClickListener(::openMyPost)
 
         postViewModel.list.observe(viewLifecycleOwner) {
             if(it.isEmpty()) {
@@ -60,6 +61,11 @@ class AccountFragment() : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun openMyPost(view: View) {
+        this.findNavController().navigate(
+            MainFragmentDirections.actionMainFragmentToMyPostFragment())
     }
 
     private fun editPost(view: View) {

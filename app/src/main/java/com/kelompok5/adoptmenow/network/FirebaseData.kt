@@ -58,7 +58,9 @@ class FirebaseData {
         }
 
         fun createPost(post: PetInfo): Task<Void> {
-            return postRef.push().setValue(post)
+            val ref = postRef.push()
+            post.id = ref.key ?: ""
+            return ref.setValue(post)
         }
 
         fun getPostRef(id: String): DatabaseReference {

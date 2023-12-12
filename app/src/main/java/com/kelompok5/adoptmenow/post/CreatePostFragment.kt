@@ -21,20 +21,20 @@ import com.kelompok5.adoptmenow.petinfo.PetInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 
 class CreatePostFragment : Fragment() {
 
     private lateinit var getContent: ActivityResultLauncher<String>
     private lateinit var adapter: UploadImageListAdapter
     private lateinit var binding: FragmentCreatePostBinding
+    private lateinit var postViewModel: PostViewModel
     private lateinit var progressDialog: ProgressDialog
     private var changeImageIndex = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getContent = registerForActivityResult(ActivityResultContracts.GetContent(), ::onGetContentSuccess)
+        postViewModel = ViewModelProvider(requireActivity())[PostViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -66,7 +66,6 @@ class CreatePostFragment : Fragment() {
         this.findNavController().navigateUp()
         Toast.makeText(requireContext(), R.string.post_created, Toast.LENGTH_SHORT).show()
         progressDialog.dismiss()
-        val viewModelProvider = ViewModelProvider(requireActivity())
     }
 
     private fun onGetContentSuccess(uri: Uri?) {
@@ -90,8 +89,9 @@ class CreatePostFragment : Fragment() {
             binding.address.text.toString(),
             images
         )
-        FirebaseData.createPost(post).await()
-        withContext(Dispatchers.Main) { onCreatePostSuccess() }
+        postViewModel.createPost(post) {
+            onCreatePostSuccess()
+        }
     }
 
 }

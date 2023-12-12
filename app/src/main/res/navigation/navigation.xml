@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_mainFragment_to_adoptDetailFragment"
             app:destination="@id/adoptDetailFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_myPostFragment"
+            app:destination="@id/myPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/adoptionInfoFragment"
@@ -114,5 +117,14 @@
         <argument
             android:name="data"
             app:argType="com.kelompok5.adoptmenow.adoptform.AdoptionForm" />
+    </fragment>
+    <fragment
+        android:id="@+id/myPostFragment"
+        android:name="com.kelompok5.adoptmenow.post.MyPostFragment"
+        android:label="@string/my_post"
+        tools:layout="@layout/fragment_my_post">
+        <action
+            android:id="@+id/action_myPostFragment_to_adoptionInfoFragment"
+            app:destination="@id/adoptionInfoFragment" />
     </fragment>
 </navigation>

@@ -12,16 +12,17 @@ import com.kelompok5.adoptmenow.MainFragmentDirections
 import com.kelompok5.adoptmenow.R
 import com.kelompok5.adoptmenow.databinding.TabContentSavedBinding
 import com.kelompok5.adoptmenow.petinfo.PetInfo
+import com.kelompok5.adoptmenow.post.PostAdapter
 
 class SavedFragment() : Fragment() {
 
     lateinit var viewModel: SavedViewModel
-    lateinit var adapter: SavedAdapter
+    lateinit var adapter: PostAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[SavedViewModel::class.java]
-        adapter = SavedAdapter(::onItemClick, viewModel::removeSaved)
+        adapter = PostAdapter(::onItemClick, viewModel::removeSaved)
     }
 
     override fun onCreateView(
