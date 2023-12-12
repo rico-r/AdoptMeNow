@@ -16,6 +16,7 @@ data class PetInfo(
     var address: String = "",
     var images: List<String> = listOf()
 ) : Serializable {
+    @Exclude
     fun getStatus(): Int {
         return if(available) R.string.status_available else R.string.status_not_available
     }
