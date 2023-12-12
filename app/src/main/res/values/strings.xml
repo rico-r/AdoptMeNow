@@ -59,6 +59,8 @@
     <string name="profile_saved">Profil berhasil disimpan!</string>
     <string name="saving_profile">Menyimpan profil...</string>
     <string name="my_post">Postingan Saya</string>
+    <string name="see_all">Lihat semua &gt;</string>
+    <string name="no_post">Belum ada post</string>
     <string name="pet_kind">Jenis Hewan</string>
     <string name="add_image">Tambah Gambar</string>
     <string name="create_post">Buat Post</string>

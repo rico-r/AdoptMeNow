@@ -6,7 +6,7 @@ import com.kelompok5.adoptmenow.R
 import java.io.Serializable
 
 data class PetInfo(
-    @Exclude
+    @Exclude @JvmField
     var id: String = "",
     var owner: String = "",
     var title: String = "",
