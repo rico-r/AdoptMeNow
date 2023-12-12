@@ -3,6 +3,7 @@ package com.kelompok5.adoptmenow.adoptform
 import androidx.recyclerview.widget.DiffUtil
 import com.google.firebase.database.Exclude
 import com.kelompok5.adoptmenow.petinfo.PetInfo
+import java.io.Serializable
 
 data class AdoptionForm(
     var from: String = "",
@@ -16,7 +17,7 @@ data class AdoptionForm(
     var profession: String = "",
     var address: String = "",
     var reason: String = "",
-) {
+) : Serializable {
     @Exclude @JvmField
     var post: PetInfo? = null
 }

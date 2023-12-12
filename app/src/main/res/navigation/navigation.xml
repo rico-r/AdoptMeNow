@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_mainFragment_to_notificationFragment"
             app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_adoptDetailFragment"
+            app:destination="@id/adoptDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/adoptionInfoFragment"
@@ -103,4 +106,13 @@
         android:name="com.kelompok5.adoptmenow.notification.NotificationFragment"
         android:label="@string/notification"
         tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/adoptDetailFragment"
+        android:name="com.kelompok5.adoptmenow.history.AdoptDetailFragment"
+        android:label=""
+        tools:layout="@layout/fragment_adopt_detail">
+        <argument
+            android:name="data"
+            app:argType="com.kelompok5.adoptmenow.adoptform.AdoptionForm" />
+    </fragment>
 </navigation>

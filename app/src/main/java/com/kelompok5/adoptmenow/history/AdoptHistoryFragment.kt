@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.kelompok5.adoptmenow.MainFragmentDirections
 import com.kelompok5.adoptmenow.R
 import com.kelompok5.adoptmenow.databinding.FragmentRecyclerviewBinding
 
@@ -21,6 +23,8 @@ class AdoptHistoryFragment : Fragment() {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[AdoptHistoryViewModel::class.java]
         adapter = AdoptHistoryAdapter {
+            this.findNavController().navigate(
+                MainFragmentDirections.actionMainFragmentToAdoptDetailFragment(it))
         }
     }
 

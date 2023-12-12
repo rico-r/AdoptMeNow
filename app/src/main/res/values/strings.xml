@@ -70,4 +70,7 @@
     <string name="notification_adopt_request">%s ingin mengadopsi %s</string>
     <string name="notification_adopt_response">Cek detail pengajuanmu %s</string>
     <string name="today">Hari ini</string>
+    <string name="status_waiting">TUNGGU!!</string>
+    <string name="status_accpeted">DITERIMA!!</string>
+    <string name="ststus_rejected">DITOLAK</string>
 </resources>
