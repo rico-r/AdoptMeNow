@@ -70,9 +70,9 @@ class CreatePostFragment : Fragment() {
     }
 
     private fun onCreatePostSuccess() {
-        this.findNavController().navigateUp()
-        Toast.makeText(requireContext(), R.string.post_created, Toast.LENGTH_SHORT).show()
         progressDialog.dismiss()
+        this.findNavController().navigate(
+            CreatePostFragmentDirections.actionCreatePostFragmentToPostSuccessFragment())
     }
 
     private fun onGetContentSuccess(uri: Uri?) {

@@ -109,7 +109,13 @@
         android:id="@+id/createPostFragment"
         android:name="com.kelompok5.adoptmenow.post.CreatePostFragment"
         android:label="@string/create_post_title"
-        tools:layout="@layout/fragment_create_post" />
+        tools:layout="@layout/fragment_create_post" >
+        <action
+            android:id="@+id/action_createPostFragment_to_postSuccessFragment"
+            app:destination="@id/postSuccessFragment"
+            app:popUpTo="@id/createPostFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/notificationFragment"
         android:name="com.kelompok5.adoptmenow.notification.NotificationFragment"
@@ -144,4 +150,9 @@
         <argument android:name="data"
             app:argType="com.kelompok5.adoptmenow.petinfo.PetInfo" />
     </fragment>
+    <fragment
+        android:id="@+id/postSuccessFragment"
+        android:name="com.kelompok5.adoptmenow.post.PostSuccessFragment"
+        android:label=""
+        tools:layout="@layout/fragment_post_success"/>
 </navigation>
