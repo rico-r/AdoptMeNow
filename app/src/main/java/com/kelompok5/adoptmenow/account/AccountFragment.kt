@@ -87,9 +87,10 @@ class AccountFragment() : Fragment() {
 
     private fun logout(view: View) {
         Firebase.auth.signOut()
-        this.findNavController().navigate(
-            MainFragmentDirections.actionMainFragmentToLoginFragment())
         Toast.makeText(requireContext(), resources.getString(R.string.logout_success), Toast.LENGTH_SHORT).show()
+        val activity = requireActivity()
+        activity.finish()
+        startActivity(activity.intent)
     }
 
 }
