@@ -32,7 +32,7 @@ class PostViewModel : ViewModel() {
         }
         FirebaseData.postRef.child(post.id).removeValue().await()
         withContext(Dispatchers.Main) {
-            list.value = list.value?.dropWhile { it.id == post.id }
+            list.value = list.value?.filterNot { it.id == post.id }
             onDeleteSuccess()
         }
     }
