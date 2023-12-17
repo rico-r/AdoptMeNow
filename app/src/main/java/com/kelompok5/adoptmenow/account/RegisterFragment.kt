@@ -1,5 +1,6 @@
 package com.kelompok5.adoptmenow.account
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -47,6 +48,7 @@ class RegisterFragment : Fragment() {
             binding.repeatPasswordField.requestFocus()
             return
         }
+        val progressDialog = ProgressDialog.show(requireContext(), "", resources.getString(R.string.loading), true)
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
@@ -64,6 +66,7 @@ class RegisterFragment : Fragment() {
                     Toast.makeText(requireContext(), resources.getString(R.string.email_registered), Toast.LENGTH_SHORT).show()
                     binding.emailField.requestFocus()
                 }
+                progressDialog.dismiss()
             }
     }
 

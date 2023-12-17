@@ -1,5 +1,6 @@
 package com.kelompok5.adoptmenow.account
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -51,6 +52,7 @@ class LoginFragment : Fragment() {
         if(!checkEmpty(binding.passwordField, R.string.password)) return
         val email = binding.emailField.text.toString()
         val password = binding.passwordField.text.toString()
+        val progressDialog = ProgressDialog.show(requireContext(), "", resources.getString(R.string.loading), true)
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
@@ -67,6 +69,7 @@ class LoginFragment : Fragment() {
                         Toast.LENGTH_SHORT,
                     ).show()
                 }
+                progressDialog.dismiss()
             }
     }
 
