@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item android:drawable="@drawable/anim_accepting_01" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_02" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_03" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_04" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_05" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_06" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_07" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_08" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_09" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_10" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_11" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_12" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_13" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_14" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_15" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_16" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_17" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_18" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_19" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_20" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_21" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_22" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_23" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_24" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_25" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_26" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_27" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_28" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_29" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_30" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_31" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_32" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_33" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_34" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_35" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_36" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_37" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_38" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_39" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_40" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_41" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_42" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_43" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_44" android:duration="70" />
+    <item android:drawable="@drawable/anim_accepting_45" android:duration="70" />
+</animation-list>

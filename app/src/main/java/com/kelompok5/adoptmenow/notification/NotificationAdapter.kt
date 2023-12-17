@@ -8,9 +8,15 @@ import com.kelompok5.adoptmenow.databinding.ListItemNotificationBinding
 import com.kelompok5.adoptmenow.databinding.ListItemNotificationDividerBinding
 
 class NotificationAdapter(
+    val onRequestClick: (NotificationItem.AdoptionRequest) -> Unit,
+    val onResponseClick: (NotificationItem.AdoptionResponse) -> Unit
 ) : ListAdapter<NotificationItem, RecyclerView.ViewHolder>(NotificationItemDiffCallback()) {
 
     fun updateList(list: List<NotificationItem>) {
+        if(list.isEmpty()) {
+            submitList(list)
+            return
+        }
         val labeledList = mutableListOf<NotificationItem>()
         var lastLabel = ""
         var i = 0
@@ -39,7 +45,8 @@ class NotificationAdapter(
                     ListItemNotificationDividerBinding.inflate(layoutInflater, parent, false))
             else ->
                 NotificationViewHolder(
-                    ListItemNotificationBinding.inflate(layoutInflater, parent, false))
+                    ListItemNotificationBinding.inflate(layoutInflater, parent, false),
+                    onRequestClick, onResponseClick)
         }
 
     }

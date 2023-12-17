@@ -19,6 +19,8 @@ data class AdoptionForm(
     var reason: String = "",
 ) : Serializable {
     @Exclude @JvmField
+    var id: String = ""
+    @Exclude @JvmField
     var post: PetInfo? = null
 }
 

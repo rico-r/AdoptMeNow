@@ -1,6 +1,8 @@
 package com.kelompok5.adoptmenow.notification
 
 import androidx.recyclerview.widget.DiffUtil
+import com.google.firebase.database.Exclude
+import java.io.Serializable
 import java.util.Date
 
 const val NOTIFICATION_ITEM_REQUEST = 0
@@ -11,19 +13,24 @@ sealed class NotificationItem(
     val type: Int = -1,
     var date: Long
 ) {
+    @Exclude @JvmField
+    var id: String = ""
+
     class AdoptionRequest(
         var name: String = "",
         var title: String = "",
         var src: String = "",
         var postId: String = "",
+        val formId: String = "",
         date: Long = 0L,
         var readed: Boolean = false,
-    ): NotificationItem(NOTIFICATION_ITEM_REQUEST, date)
+    ): NotificationItem(NOTIFICATION_ITEM_REQUEST, date), Serializable
 
     class AdoptionResponse(
         var name: String = "",
         var src: String = "",
         var postId: String = "",
+        val formId: String = "",
         date: Long = 0L,
         var readed: Boolean = false,
     ): NotificationItem(NOTIFICATION_ITEM_RESPONSE, date)

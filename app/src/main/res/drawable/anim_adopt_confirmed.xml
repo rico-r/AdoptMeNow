@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/anim_adopt_confirmed_01" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_02" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_03" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_04" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_05" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_06" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_07" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_08" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_09" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_10" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_11" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_12" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_13" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_14" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_15" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_16" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_17" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_18" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_19" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_20" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_21" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_22" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_23" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_24" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_25" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_26" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_27" android:duration="40" />
+    <item android:drawable="@drawable/anim_adopt_confirmed_28" android:duration="40" />
+</animation-list>

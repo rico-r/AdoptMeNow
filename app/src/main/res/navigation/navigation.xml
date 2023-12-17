@@ -120,7 +120,14 @@
         android:id="@+id/notificationFragment"
         android:name="com.kelompok5.adoptmenow.notification.NotificationFragment"
         android:label="@string/notification"
-        tools:layout="@layout/fragment_notification" />
+        tools:layout="@layout/fragment_notification" >
+        <action
+            android:id="@+id/action_notificationFragment_to_confirmAdoptionFragment"
+            app:destination="@id/confirmAdoptionFragment" />
+        <action
+            android:id="@+id/action_notificationFragment_to_confirmResultFragment"
+            app:destination="@id/confirmResultFragment" />
+    </fragment>
     <fragment
         android:id="@+id/adoptDetailFragment"
         android:name="com.kelompok5.adoptmenow.history.AdoptDetailFragment"
@@ -155,4 +162,27 @@
         android:name="com.kelompok5.adoptmenow.post.PostSuccessFragment"
         android:label=""
         tools:layout="@layout/fragment_post_success"/>
+    <fragment
+        android:id="@+id/confirmAdoptionFragment"
+        android:name="com.kelompok5.adoptmenow.adoptform.ConfirmAdoptionFragment"
+        android:label="@string/adopter_identity"
+        tools:layout="@layout/fragment_confirm_adoption" >
+        <argument
+            android:name="form"
+            app:argType="com.kelompok5.adoptmenow.adoptform.AdoptionForm" />
+        <action
+            android:id="@+id/action_confirmAdoptionFragment_to_confirmResultFragment"
+            app:destination="@id/confirmResultFragment"
+            app:popUpTo="@id/confirmAdoptionFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmResultFragment"
+        android:name="com.kelompok5.adoptmenow.adoptform.ConfirmResultFragment"
+        android:label=""
+        tools:layout="@layout/fragment_confirm_result" >
+        <argument
+            android:name="result"
+            app:argType="string" />
+    </fragment>
 </navigation>

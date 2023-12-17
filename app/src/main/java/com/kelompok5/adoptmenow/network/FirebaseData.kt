@@ -10,6 +10,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import com.kelompok5.adoptmenow.account.UserInfo
+import com.kelompok5.adoptmenow.adoptform.AdoptionForm
 import com.kelompok5.adoptmenow.petinfo.PetInfo
 import kotlinx.coroutines.tasks.await
 import kotlin.random.Random
@@ -80,6 +81,13 @@ class FirebaseData {
             val result = snapshot.getValue<PetInfo>()
             result?.id = id
             return result
+        }
+
+        suspend fun getForm(formId: String): AdoptionForm {
+            val result = formRef.child(formId).get().await()
+            val form = result.getValue<AdoptionForm>()!!
+            form.id = formId
+            return form
         }
 
     }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/anim_adopt_rejected_01" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_02" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_03" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_04" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_05" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_06" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_07" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_08" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_09" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_10" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_11" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_12" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_13" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_14" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_15" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_16" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_17" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_18" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_19" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_20" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_21" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_22" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_23" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_24" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_25" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_26" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_27" android:duration="42" />
+    <item android:drawable="@drawable/anim_adopt_rejected_28" android:duration="42" />
+</animation-list>

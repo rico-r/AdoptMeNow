@@ -29,12 +29,14 @@ class AdoptHistoryViewModel : ViewModel() {
 
     fun add(form: AdoptionForm) {
         list.value = list.value!! + listOf(form)
-        FirebaseData.formRef.push().setValue(form)
+        val formRef = FirebaseData.formRef.push()
+        formRef.setValue(form)
         FirebaseData.notifyRef.child(form.to).push().setValue(NotificationItem.AdoptionRequest(
             form.name,
             form.post!!.title,
             form.from,
             form.postId,
+            formRef.key!!,
             Date().time
         ))
     }
