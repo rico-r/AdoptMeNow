@@ -54,6 +54,10 @@ class LoginFragment : Fragment() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
+                    val user = auth.currentUser!!
+                    if(!user.isEmailVerified) {
+                        user.sendEmailVerification()
+                    }
                     this.findNavController().navigate(
                         LoginFragmentDirections.actionLoginFragmentToMainFragment())
                 } else {

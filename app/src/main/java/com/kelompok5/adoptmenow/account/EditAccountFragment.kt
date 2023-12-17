@@ -100,6 +100,7 @@ class EditAccountFragment : Fragment() {
         if(currentUser.email != email) {
             try {
                 currentUser.updateEmail(email).await()
+                currentUser.sendEmailVerification()
             } catch (_: Exception) {}
         }
         // Update password if changed

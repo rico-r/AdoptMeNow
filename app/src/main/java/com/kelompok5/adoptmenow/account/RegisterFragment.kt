@@ -54,6 +54,7 @@ class RegisterFragment : Fragment() {
                     Firebase.database.getReference("users")
                         .child(user.uid).setValue(UserInfo(name, "", email, "", ""))
                         .addOnSuccessListener {
+                            user.sendEmailVerification()
                             val navController = this.findNavController()
                             navController.popBackStack()
                             navController.navigate(LoginFragmentDirections.actionLoginFragmentToMainFragment())
